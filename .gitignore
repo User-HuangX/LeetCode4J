@@ -12,6 +12,7 @@ target/
 .idea/vcs.xml
 .idea/.gitignore
 .idea/inspectionProfiles
+/.idea/
 .idea
 *.iws
 *.iml
@@ -41,4 +42,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/.idea/
 /.idea/
