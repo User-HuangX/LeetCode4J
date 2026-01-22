@@ -11,20 +11,21 @@ import java.util.List;
 public class SolutionPermute {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
-        ArrayDeque<Integer> path = new ArrayDeque<>();
-        backtracking(nums,path,ans);
+        backtracking(nums,new ArrayDeque<>(),ans,new boolean[nums.length]);
         return ans;
     }
 
-    private void backtracking(int[] nums, ArrayDeque<Integer> path, List<List<Integer>> ans) {
+    private void backtracking(int[] nums, ArrayDeque<Integer> path, List<List<Integer>> ans, boolean[] visited) {
         if (path.size() == nums.length) {
             ans.add(new ArrayList<>(path));
             return;
         }
-        for (int num : nums) {
-            if (path.contains(num)) continue;
-            path.addLast(num);
-            backtracking(nums, path, ans);
+        for (int i = 0, numsLength = nums.length; i < numsLength; i++) {
+            if (visited[i]) continue;
+            visited[i] = true;
+            path.addLast(nums[i]);
+            backtracking(nums, path, ans, visited);
+            visited[i] = false;
             path.removeLast();
         }
     }
